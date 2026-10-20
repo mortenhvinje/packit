@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PackIt!</title>
+  <meta name="description" content="Lag en pakkeliste til ferien på sekunder.">
+  <meta name="theme-color" content="#ff6b35">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="PackIt!">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Pack<span>It!</span></h1>
+    <p class="tagline">Pakkelisten din på sekunder</p>
+  </header>
+
+  <main>
+    <!-- Planlegging -->
+    <section id="plan" class="view">
+      <label class="card describe">
+        <span class="label">Hvor skal du?</span>
+        <textarea id="desc" rows="3" placeholder="F.eks. «10 dager i Spania med bading, fottur og fin middag»"></textarea>
+        <span class="hint">Skriv fritt, så fyller vi ut resten. Du kan justere under.</span>
+      </label>
+
+      <div class="card">
+        <span class="label">Antall dager</span>
+        <div class="stepper">
+          <button type="button" id="dayMinus" aria-label="Færre dager">−</button>
+          <output id="days">5</output>
+          <button type="button" id="dayPlus" aria-label="Flere dager">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="label">Type ferie</span>
+        <div class="chips" id="types"></div>
+      </div>
+
+      <div class="card">
+        <span class="label">Vær</span>
+        <div class="chips single" id="climate"></div>
+      </div>
+
+      <div class="card">
+        <span class="label">Aktiviteter</span>
+        <div class="chips" id="acts"></div>
+      </div>
+
+      <div class="card">
+        <span class="label">Annet</span>
+        <div class="chips" id="extras"></div>
+      </div>
+
+      <button type="button" id="generate" class="primary">Lag pakkeliste 🧳</button>
+    </section>
+
+    <!-- Pakkeliste -->
+    <section id="list" class="view" hidden>
+      <div class="card summary">
+        <div>
+          <strong id="tripTitle"></strong>
+          <div id="tripMeta" class="hint"></div>
+        </div>
+        <div class="progress"><div id="bar"></div></div>
+        <div id="count" class="hint"></div>
+      </div>
+
+      <form id="addForm" class="card add">
+        <input id="addInput" placeholder="Legg til noe eget …" autocomplete="off">
+        <button type="submit" aria-label="Legg til">+</button>
+      </form>
+
+      <div id="groups"></div>
+
+      <div class="actions">
+        <button type="button" id="share">Del / kopier</button>
+        <button type="button" id="uncheck">Fjern alle haker</button>
+        <button type="button" id="edit">Endre tur</button>
+        <button type="button" id="reset" class="danger">Ny tur</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
