@@ -1,5 +1,5 @@
 // Gjør appen tilgjengelig uten nett. Øk versjonen når filene endres.
-const CACHE = 'packit-v1';
+const CACHE = 'packit-v11';
 const FILES = ['./', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -14,7 +14,8 @@ self.addEventListener('activate', e => {
 
 // Nett først, cache som reserve – så oppdateringer kommer med en gang
 self.addEventListener('fetch', e => {
-  if (e.request.method !== 'GET') return;
+  // Værvarselet hentes alltid direkte, aldri fra cache
+  if (e.request.method !== 'GET' || new URL(e.request.url).origin !== location.origin) return;
   e.respondWith(
     fetch(e.request)
       .then(res => {

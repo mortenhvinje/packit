@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>PackIt!</title>
   <meta name="description" content="Lag en pakkeliste til ferien på sekunder.">
-  <meta name="theme-color" content="#ff6b35">
+  <meta name="theme-color" content="#0071e3">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -16,7 +16,7 @@
 </head>
 <body>
   <header class="top">
-    <h1>Pack<span>It!</span></h1>
+    <h1><img src="icons/icon.svg" alt=""><span>Pack<em>It!</em></span></h1>
     <p class="tagline">Pakkelisten din på sekunder</p>
   </header>
 
@@ -24,10 +24,19 @@
     <!-- Planlegging -->
     <section id="plan" class="view">
       <label class="card describe">
-        <span class="label">Hvor skal du?</span>
-        <textarea id="desc" rows="3" placeholder="F.eks. «10 dager i Spania med bading, fottur og fin middag»"></textarea>
+        <span class="label">Beskriv turen</span>
+        <textarea id="desc" rows="3" placeholder="F.eks. «10 dager i Barcelona med bading, fottur og fin middag»"></textarea>
         <span class="hint">Skriv fritt, så fyller vi ut resten. Du kan justere under.</span>
       </label>
+
+      <div class="card">
+        <span class="label">Reisemål og avreise</span>
+        <div class="row2">
+          <input id="dest" placeholder="By eller land" autocomplete="off" aria-label="Reisemål">
+          <input id="start" type="date" aria-label="Avreisedato">
+        </div>
+        <div id="weather"></div>
+      </div>
 
       <div class="card">
         <span class="label">Antall dager</span>
@@ -39,12 +48,17 @@
       </div>
 
       <div class="card">
+        <span class="label">Hvem pakker du for?</span>
+        <div class="chips single" id="gender"></div>
+      </div>
+
+      <div class="card">
         <span class="label">Type ferie</span>
         <div class="chips" id="types"></div>
       </div>
 
       <div class="card">
-        <span class="label">Vær</span>
+        <span class="label">Vær <span id="climateHint" class="hint"></span></span>
         <div class="chips single" id="climate"></div>
       </div>
 
@@ -67,6 +81,7 @@
         <div>
           <strong id="tripTitle"></strong>
           <div id="tripMeta" class="hint"></div>
+          <div id="tripWeather" class="hint"></div>
         </div>
         <div class="progress"><div id="bar"></div></div>
         <div id="count" class="hint"></div>
